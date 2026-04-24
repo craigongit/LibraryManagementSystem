@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "5btDnQGgPo8=",
+  "dgSpecHash": "Iq7XiAfYHGo=",
   "success": true,
   "projectFilePath": "C:\\Users\\craig\\Desktop\\TCSA\\LibraryManagementSystem\\LibraryManagementSystem.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\craig\\.nuget\\packages\\spectre.console\\0.55.2\\spectre.console.0.55.2.nupkg.sha512",
+    "C:\\Users\\craig\\.nuget\\packages\\spectre.console.ansi\\0.55.2\\spectre.console.ansi.0.55.2.nupkg.sha512"
+  ],
   "logs": []
 }
