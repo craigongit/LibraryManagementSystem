@@ -32,11 +32,30 @@ while (true)
                 AnsiConsole.MarkupLine($"- [cyan]{book}[/]");
             }
 
-            AnsiConsole.MarkupLine("Press Any key to Continue");
+            AnsiConsole.MarkupLine("[yellow]Press Any key to Continue[/]");
             Console.ReadKey();
 
             break;
         case "Add Book":
+
+            AnsiConsole.MarkupLine("[yellow]Enter the name of the book![/]");
+
+            string? bookToAdd = Console.ReadLine();
+
+            // Check if the book alredy exist
+            // Add or reject tthe book depending on the result
+
+            if (books.Contains(bookToAdd))
+                AnsiConsole.MarkupLine("[red]Operation failed, the book is already registered![/]");
+            else
+            {
+                books.Add(bookToAdd);
+                AnsiConsole.MarkupLine("[green]The book was successfully added[/]");
+            }
+
+            AnsiConsole.MarkupLine("[yellow]Press Any key to Continue[/]");
+            Console.ReadKey();
+
             break;
         case "Delete Book":
             break;
