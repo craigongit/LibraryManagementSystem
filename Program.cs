@@ -46,7 +46,9 @@ while (true)
             // Add or reject tthe book depending on the result
 
             if (books.Contains(bookToAdd))
+            {
                 AnsiConsole.MarkupLine("[red]Operation failed, the book is already registered![/]");
+            }
             else
             {
                 books.Add(bookToAdd);
@@ -58,6 +60,18 @@ while (true)
 
             break;
         case "Delete Book":
+
+            // Prompt the user to choice the book to delete
+            // among those stored in the books list
+
+            var bookToDelete = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .Title("select the book to delete: ")
+                    .AddChoices(books));
+
+            books.Remove(bookToDelete);
+            AnsiConsole.MarkupLine("[green]The book was successfully removed![/]");
+
             break;
     } 
 }
