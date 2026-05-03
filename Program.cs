@@ -9,7 +9,26 @@ var menuChoices = new List<string>()
 
 var books = new List<string>()
 {
-    "The Great Gatsby", "To Kill a Mockingbird", "1984", "Pride and Prejudice", "The Catcher in the Rye", "The Hobbit", "Moby-Dick", "War and Peace", "The Odyssey", "The Lord of the Rings", "Jane Eyre", "Animal Farm", "Brave New World", "The Chronicles of Narnia", "The Diary of a Young Girl", "The Alchemist", "Wuthering Heights", "Fahrenheit 451", "Catch-22", "The Hitchhiker's Guide to the Galaxy"
+    "The Great Gatsby", 
+    "To Kill a Mockingbird", 
+    "1984", 
+    "Pride and Prejudice", 
+    "The Catcher in the Rye", 
+    "The Hobbit", 
+    "Moby-Dick", 
+    "War and Peace", 
+    "The Odyssey", 
+    "The Lord of the Rings", 
+    "Jane Eyre", 
+    "Animal Farm", 
+    "Brave New World", 
+    "The Chronicles of Narnia", 
+    "The Diary of a Young Girl", 
+    "The Alchemist", 
+    "Wuthering Heights", 
+    "Fahrenheit 451", 
+    "Catch-22", 
+    "The Hitchhiker's Guide to the Galaxy"
 };
 
 while (true)
@@ -17,13 +36,13 @@ while (true)
     Console.Clear();
 
     var choice = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
+            new SelectionPrompt<MenuOption>()
             .Title("Select your next Operation")
-            .AddChoices(menuChoices));  
+            .AddChoices(Enum.GetValues<MenuOption>()));  
 
     switch (choice)
     {
-        case "View Books":
+        case MenuOption.ViewBooks:
 
             AnsiConsole.MarkupLine("[yellow]List of Books:[/]");
 
@@ -36,7 +55,7 @@ while (true)
             Console.ReadKey();
 
             break;
-        case "Add Book":
+        case MenuOption.AddBook:
 
             AnsiConsole.MarkupLine("[yellow]Enter the name of the book![/]");
 
@@ -59,7 +78,7 @@ while (true)
             Console.ReadKey();
 
             break;
-        case "Delete Book":
+        case MenuOption.DeleteBook:
 
             // Prompt the user to choice the book to delete
             // among those stored in the books list
@@ -74,4 +93,11 @@ while (true)
 
             break;
     } 
+}
+
+enum MenuOption
+{
+    ViewBooks,
+    AddBook,
+    DeleteBook
 }
