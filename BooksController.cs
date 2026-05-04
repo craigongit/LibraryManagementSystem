@@ -1,42 +1,17 @@
 // This class contains the logic necessary to handle
-// all the operations related to the books management
+// all the operations related to the Books management
 
 using Spectre.Console;
+using static LibraryManagementSystem.MockDatabase;
 namespace LibraryManagementSystem;
 
-internal static class BooksController
+internal class BooksController
 {
-
-    private static List<string> books = new()
-    {
-        "The Great Gatsby",
-        "To Kill a Mockingbird",
-        "1984",
-        "Pride and Prejudice",
-        "The Catcher in the Rye",
-        "The Hobbit",
-        "Moby-Dick",
-        "War and Peace",
-        "The Odyssey",
-        "The Lord of the Rings",
-        "Jane Eyre",
-        "Animal Farm",
-        "Brave New World",
-        "The Chronicles of Narnia",
-        "The Diary of a Young Girl",
-        "The Alchemist",
-        "Wuthering Heights",
-        "Fahrenheit 451",
-        "Catch-22",
-        "The Hitchhiker's Guide to the Galaxy"
-    };
-
-
-    internal static void ViewBooks()
+    internal void ViewBooks()
     {
         AnsiConsole.MarkupLine("[yellow]List of Books:[/]");
 
-        foreach (var book in books)
+        foreach (var book in Books)
         {
             AnsiConsole.MarkupLine($"- [cyan]{book}[/]");
         }
@@ -45,7 +20,7 @@ internal static class BooksController
         Console.ReadKey();
     }
 
-    internal static void AddBook()
+    internal void AddBook()
     {
         AnsiConsole.MarkupLine("[yellow]Enter the name of the book![/]");
 
@@ -54,13 +29,13 @@ internal static class BooksController
         // Check if the book alredy exist
         // Add or reject tthe book depending on the result
 
-        if (books.Contains(bookToAdd))
+        if (Books.Contains(bookToAdd))
         {
             AnsiConsole.MarkupLine("[red]Operation failed, the book is already registered![/]");
         }
         else
         {
-            books.Add(bookToAdd);
+            Books.Add(bookToAdd);
             AnsiConsole.MarkupLine("[green]The book was successfully added[/]");
         }
 
@@ -68,17 +43,17 @@ internal static class BooksController
         Console.ReadKey();
     }
 
-    internal static void DeleteBook()
+    internal void DeleteBook()
     {
         // Prompt the user to choice the book to delete
-        // among those stored in the books list
+        // among those stored in the Books list
 
         var bookToDelete = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                 .Title("select the book to delete: ")
-                .AddChoices(books));
+                .AddChoices(Books));
 
-        books.Remove(bookToDelete);
+        Books.Remove(bookToDelete);
         AnsiConsole.MarkupLine("[green]The book was successfully removed![/]");
     }
 }

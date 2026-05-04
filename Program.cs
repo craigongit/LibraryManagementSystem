@@ -1,6 +1,5 @@
 ﻿using LibraryManagementSystem;
 using Spectre.Console;
 
-
-
-UserInterface.MainMenu();
+UserInterface userInterface = new();
+userInterface.MainMenu();
