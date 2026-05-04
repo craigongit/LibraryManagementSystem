@@ -13,7 +13,7 @@ internal class BooksController
 
         foreach (var book in Books)
         {
-            AnsiConsole.MarkupLine($"- [cyan]{book}[/]");
+            AnsiConsole.MarkupLine($"- [cyan]{book.Name}[/] - [yellow]{book.Pages} pages[/]");
         }
 
         AnsiConsole.MarkupLine("[yellow]Press Any key to Continue[/]");
@@ -22,20 +22,21 @@ internal class BooksController
 
     internal void AddBook()
     {
-        AnsiConsole.MarkupLine("[yellow]Enter the name of the book![/]");
+        string? bookTitle = AnsiConsole.Ask<string>("Enter the [green]title[/] of the book to add:");
+        int bookPages = AnsiConsole.Ask<int>("Enter the [green]number of pages[/] in the book:");
 
-        string? bookToAdd = Console.ReadLine();
 
         // Check if the book alredy exist
         // Add or reject tthe book depending on the result
 
-        if (Books.Contains(bookToAdd))
+        if (Books.Exists(b => b.Name.Equals(bookTitle, StringComparison.OrdinalIgnoreCase)))
         {
             AnsiConsole.MarkupLine("[red]Operation failed, the book is already registered![/]");
         }
         else
         {
-            Books.Add(bookToAdd);
+            var newBook = new Book(bookTitle, bookPages);
+            Books.Add(newBook);
             AnsiConsole.MarkupLine("[green]The book was successfully added[/]");
         }
 
@@ -49,8 +50,9 @@ internal class BooksController
         // among those stored in the Books list
 
         var bookToDelete = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
+                new SelectionPrompt<Book>()
                 .Title("select the book to delete: ")
+                .UseConverter(b => $"{b.Name}")
                 .AddChoices(Books));
 
         Books.Remove(bookToDelete);
