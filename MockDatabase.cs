@@ -2,7 +2,7 @@ using System;
 
 namespace LibraryManagementSystem;
 
-public static class MockDatabase
+internal static class MockDatabase
 {
     internal static List<Book> Books = new()
     {      
